@@ -1,0 +1,5 @@
+
+enum PageSplitType {
+  imports,
+  content,
+}
