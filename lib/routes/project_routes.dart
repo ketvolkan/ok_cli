@@ -8,5 +8,7 @@ class ProjectRoute {
     if (args.command?.name == "init") await ProjectController.initApp(args);
     if (args.command?.name == "build_android") await ProjectController.buildForAndroid(args);
     if (args.command?.name == "locales") await ProjectController.locales(args);
+    if (args.command?.name == "init_setting") await ProjectController.initSettings(args);
+    if (args.command?.name == "test") await ProjectController.test(args);
   }
 }

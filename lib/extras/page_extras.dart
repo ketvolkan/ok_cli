@@ -1,3 +1,4 @@
+import '../utils/constants.dart';
 import '../utils/enums.dart';
 import '../utils/string_extensions.dart';
 
@@ -8,7 +9,7 @@ class PageExtra {
     fillContent += "import 'package:flutter/material.dart';";
     fillContent += "import 'package:flutter/services.dart';";
     fillContent += "import 'package:get/get.dart';";
-    fillContent += "import '${pageName}_controller.dart';";
+    fillContent += "import '../controllers/${pageName}_controller.dart';";
     fillContent += 'class ${pageName.pageNameCapitalized}View extends GetView<${pageName.pageNameCapitalized}Controller>{';
     fillContent += "const ${pageName.pageNameCapitalized}View({Key? key}) : super(key: key);";
     fillContent += "@override Widget build(BuildContext context) {";
@@ -21,7 +22,7 @@ class PageExtra {
   static String controllerPageSnippet(String pageName) {
     String fillContent = "";
     fillContent += "import 'package:get/get.dart';";
-    fillContent += "import '../../../../../../core/utils/getx_extensions.dart';";
+    fillContent += "import '../../../../../../../core/utils/extensions/getx_extensions.dart';";
     fillContent += "enum ${pageName.pageNameCapitalized}State { Initial, Busy, Error, Loaded }";
     fillContent += 'class ${pageName.pageNameCapitalized}Controller extends GetxController{';
     fillContent += "final Rx<${pageName.pageNameCapitalized}State> _state = ${pageName.pageNameCapitalized}State.Initial.obs;";
@@ -45,7 +46,7 @@ class PageExtra {
     String fillContent = "";
     fillContent += "import 'package:get/get.dart';";
     fillContent += "import '${pageName}_controller.dart';";
-    fillContent += "import '${pageName}_service.dart';";
+    fillContent += "import '../${Constants.pathServices}/${pageName}_service.dart';";
     fillContent += "class ${pageName.pageNameCapitalized}Binding implements Bindings{";
     fillContent += "@override void dependencies() { ";
     fillContent += "Get.lazyPut(() => ${pageName.pageNameCapitalized}Service());";
@@ -83,14 +84,14 @@ class PageExtra {
         PageSplitType.content: "class${file.split("class")[1]}",
       };
       fillContent += (splits[PageSplitType.imports] as String);
-      fillContent += "import '../modules/$pageName/${pageName}_binding.dart';";
-      fillContent += "import '../modules/$pageName/${pageName}_view.dart';";
+      fillContent += "import '../${Constants.basePathScreen}/${pageName.pageFolderName}/${Constants.pathControllers}/${pageName}_binding.dart';";
+      fillContent += "import '../${Constants.basePathScreen}/${pageName.pageFolderName}/${Constants.pathViews}/$pageName.dart';";
       fillContent += (splits[PageSplitType.content] as String).substring(0, (splits[PageSplitType.content] as String).length - 3);
     } else {
       fillContent += "import 'app_pages.dart';";
       fillContent += "import 'package:get/get.dart';";
-      fillContent += "import '../modules/$pageName/${pageName}_binding.dart';";
-      fillContent += "import '../modules/$pageName/${pageName}_view.dart';";
+      fillContent += "import '../${Constants.basePathScreen}/${pageName.pageFolderName}/${Constants.pathControllers}/${pageName}_binding.dart';";
+      fillContent += "import '../${Constants.basePathScreen}/${pageName.pageFolderName}/${Constants.pathViews}/$pageName.dart';";
       fillContent += "class AppPages {static var PAGES = [";
     }
     String pageNameWithUpperCase = pageName.pageNameToUppercase;

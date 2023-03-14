@@ -10,6 +10,8 @@ void main(List<String> arguments) async {
     ..addCommand("init")
     ..addCommand("build_android")
     ..addCommand("locales")
+    ..addCommand("init_setting")
+    ..addCommand("test")
     ..addOption("org")
     ..addOption("name");
   final args = parser.parse(arguments);

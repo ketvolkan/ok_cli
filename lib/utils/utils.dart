@@ -1,17 +1,24 @@
+import 'package:talker_logger/talker_logger.dart';
 
 class Utils {
   static void printWarning(String message) {
-    print("\x1B[33m$message\x1B[33m");
+    logger.warning("[WARNING] $message");
   }
 
   static void printSuccess(String message) {
-    print("\x1B[32m$message\x1B[32m");
+    logger.good("[SUCCESS] $message");
   }
 
   static void printError(String message) {
-    print("\x1B[31m$message\x1B[31m");
+    logger.error("[ERROR] $message");
+  }
+
+  static void printInfo(String message) {
+    logger.info("[INFO] $message");
   }
 }
+
+TalkerLogger get logger => TalkerLogger();
 
 Future<R?> errorHandler<R>({required Future<R?> Function() tryMethod, required Future<R?> Function(Object exception) onErr}) async {
   try {

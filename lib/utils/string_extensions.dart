@@ -15,4 +15,8 @@ extension StringExtension on String {
   String get pageNameToUppercase {
     return replaceAll("_", "").toUpperCase();
   }
+
+  String get pageFolderName {
+    return split("_")[0];
+  }
 }

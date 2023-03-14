@@ -12,4 +12,5 @@ dev_dependencies:
 
 dependencies:
   args: ^2.4.0
+  talker_logger: ^2.2.1
   process_run: ^0.12.5+2
